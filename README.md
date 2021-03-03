@@ -1,5 +1,5 @@
 # ArduinoEjemplos
-Códigos para sensores y módulos.
+Ejemplos de códigos de sensores y módulos para Arduino UNO.
  
  Incluye:
  
@@ -17,7 +17,8 @@ Códigos para sensores y módulos.
  - Servo Motor.
  - Sensor temperatura TMP36.
  - Ultrasónico HC-SR04.
- - Imágenes de referencia de la conexión con Arduino UNO.
+ - Imágenes de referencia para conectar sensores/módulos con la placa.
+
 
 Alejandro Mayró.
 
