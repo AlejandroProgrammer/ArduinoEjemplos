@@ -1,0 +1,74 @@
+#include <Servo.h>
+int valorX = 0; // LECTURA DEL EJE X
+int valorY = 0; // LECTURA DEL EJE Y
+int pinJX = A0; // PIN ANALOGICO A0 DEL EJE X
+int pinJY = A1; // PIN ANALOGICO A1 DEL EJE Y
+Servo motor1; // DECLARAR SERVO 1
+Servo motor2; // DECLARAR SERVO 2
+int grados1 = 90; // POSICIÓN INICIAL SERVOMOTOR 1
+int grados2 = 90; // POSICIÓN INICIAL SERVOMOTOR 2
+  
+void setup() {
+Serial.begin(9600); // ACTIVA LA COMUNICACIÓN CON LA PLACA BUILD&CODE UNO
+motor1.attach (2); // PIN DIGITAL PWM 6 DONDE ESTÁ CONECTADO EL SERVO 1
+motor1.write (0);
+motor2.attach (3); // PIN DIGITAL PWM 9 DONDE ESTÁ CONECTADO EL SERVO 2
+motor2.write (0);
+}
+ 
+void loop() { 
+valorX = analogRead ( pinJX); // LECTURA DEL PUERTO ANALOG. A0 DEL EJE X
+valorY = analogRead ( pinJY); // LECTURA DEL PUERTO ANALOG. A1 DEL EJE Y
+ 
+// INCREMENTAR GRADOS MOTOR1
+if ( (valorX > 550 ) && (valorX <= 1023) ) // INCREMENTAR LOS GRADOS CUANDO LA LECTURA DEL EJE X ES MÁS GRANDE QUE 550
+{
+grados1 = grados1 + 5;
+}
+ 
+// DECREMENTAR GRADOS MOTOR1
+if ( (valorX >= 0 ) && (valorX < 480 )) // DECREMENTAR LOS GRADOS CUANDO LA LECTURA DEL EJE X ES MÁS PEQUEÑO QUE 480
+{
+  grados1 = grados1 - 5;
+}
+ 
+if ( grados1 >= 180) // SI EL SERVOMOTOR LLEGA A 180º POR MAS QUE MUEVAS EL JOYSTICK EL SERVOMOTOR NO SE MOVERÁ MÁS DE 180º
+{
+  grados1 = 180;
+}
+
+if ( grados1 <= 0) // SI EL SERVOMOTOR LLEGA A 0º POR MAS QUE MUEVAS EL JOYSTICK EL SERVOMOTOR NO SE MOVERÁ MÁS DE 0º
+{
+  grados1 = 0;
+}
+ 
+// INCREMENTAR GRADOS MOTOR2
+ 
+if ( (valorY > 550 ) && (valorY <= 1023) ) // INCREMENTAR LOS GRADOS CUANDO LA LECTURA DEL EJE X ES MÁS GRANDE QUE 550.
+{
+  grados2 = grados2 + 5;
+}
+ 
+// DECREMENTAR GRADOS MOTOR2
+ 
+if ( (valorY >= 0 ) && (valorY < 480) ) // DECREMENTAR LOS GRADOS CUANDO LA LECTURA DEL EJE X ES MÁS PEQUEÑO QUE 480 
+{
+  grados2 = grados2 - 5;
+}
+ 
+if ( grados2 >= 180) // SI EL SERVOMOTOR LLEGA A 180º POR MAS QUE MUEVAS EL JOYSTICK EL SERVOMOTOR NO SE MOVERÁ MÁS DE 180º
+{
+  grados2 = 180;
+}
+
+if ( grados2 <= 0) // SI EL SERVOMOTOR LLEGA A 0º POR MAS QUE MUEVAS EL JOYSTICK EL SERVOMOTOR NO SE MOVERÁ MÁS DE 0º
+{
+  grados2 = 0;
+}
+   
+motor1.write (grados1); // ENVIAR LOS GRADOS AL SERVO 1
+motor2.write (grados2); // ENVIAR LOS GRADOS AL SERVO 2
+ 
+delay (20);
+ 
+}
