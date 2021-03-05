@@ -23,5 +23,5 @@ Ejemplos de códigos de sensores y módulos para Arduino UNO.
 ** Las librerías utilizadas no estan incluidas, por lo que deben descargarse. **
 
 
-Alejandro Mayró Lena.
+Alejandro Mayró L.
 
